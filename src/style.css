@@ -76,6 +76,13 @@ button:focus-visible {
   text-align: center;
 }
 
+.bold{
+  font-weight: 600 !important;
+}
+.semi-bold{
+  font-weight: 500 !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

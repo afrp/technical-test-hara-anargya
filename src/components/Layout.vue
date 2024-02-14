@@ -46,6 +46,7 @@ import IconOverview from '../assets/icon/Overview.vue'
     padding: 24px 8px;
     padding-left: 30px;
     box-shadow: 0px 0px 4px 0px #00000033;
+    border-right: 1px solid #00000033;
     gap: 32px;
 }
 

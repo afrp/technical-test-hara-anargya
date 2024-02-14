@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+import Layout from './components/Layout.vue'
+</script>
 
 <template>
-  <div class="text-lg font-bold">Hallo Folks!</div>
+  <Layout>
+    <router-view/>
+  </Layout>
 </template>
 
 <style scoped></style>

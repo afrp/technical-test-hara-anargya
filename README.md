@@ -1,5 +1,8 @@
 # Technical Test Frontend Hara Anargya
 
+by Ade Fathur R, skyout02@gmail.com
+
+
 ## Installation
 * Fork Repo ini
 * Clone Repo ini

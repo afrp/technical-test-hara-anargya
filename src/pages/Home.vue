@@ -1,34 +1,40 @@
 <script setup>
 import InfoBox from '../components/InfoBox.vue'
+import PopUpBox from '../components/PopUpBox.vue'
 
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const data = ref([]);
-const selectedUser = ref({});    
+const selectedUser = ref({}); 
+const showDetail = ref(false);   
 
 function formatDate(dateString) {
   const originalDate = new Date(dateString);
   
-  const day = originalDate.getDate();
-  const month = originalDate.getMonth() + 1; // Month dimulai dari 0 (Januari adalah bulan 0)
-  const year = originalDate.getFullYear();
-
   const addLeadingZero = value => (value < 10 ? `0${value}` : value);
 
-  const formattedDay = addLeadingZero(day);
-  const formattedMonth = addLeadingZero(month);
-  const formattedYear = year;
+  const formattedDay = addLeadingZero(originalDate.getDate());
+  const formattedMonth = addLeadingZero(originalDate.getMonth() + 1);
+  const formattedYear = originalDate.getFullYear();
 
   return `${formattedDay}/${formattedMonth}/${formattedYear}`;
 }
 
+function openDetail(data) {
+    selectedUser.value = data;
+    showDetail.value = true;
+}
+
+function closePopUp (){
+    showDetail.value = false;
+}
 onMounted(async () => {
     try {
     const resp = await axios.get('https://api.slingacademy.com/v1/sample-data/users');
     data.value = resp.data;
     selectedUser.value = resp.data.users[1];
-    // console.log('masuk', resp.data.users[1]);
+    console.log('masuk', resp.data.users[1]);
     } catch (error) {
     console.error('Error fetching data:', error);
     }
@@ -71,13 +77,18 @@ onMounted(async () => {
                         <td class="semi-bold"><span class="text-black">{{ user.email }}</span></td>
                         <td>{{ user.job }}</td>
                         <td class="semi-bold text-black"><span class="text-black">{{ user.country }}</span></td>
-                        <td>Action Button</td>
+                        <td class="flex items-center gap-2">
+                            <button type="button" class="btn-tbl" @click="openDetail(user)">Select</button>
+                            <button type="button" class="btn-tbl" @click="openDetail(user)">View Detail</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-        </div>  
-    </div>    
-    
+        </div>         
+    </div>     
+    <transition name="fade" mode="out-in">
+        <PopUpBox v-if="showDetail" :data="selectedUser" @exit="closePopUp"/>   
+    </transition>
 </template>
 
 <style scoped>
@@ -110,6 +121,7 @@ onMounted(async () => {
 .box-table table tr th{        
     border-top: 1px solid #00000033;
     border-bottom: 1px solid #00000033;
+    background: #FAFBFC;
 }
 
 .box-table table tbody tr{            
@@ -145,5 +157,15 @@ onMounted(async () => {
 .box-img img{
     height: 24px;
     width: auto;
+}
+
+
+.fade-enter-active, .fade-leave-active{
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

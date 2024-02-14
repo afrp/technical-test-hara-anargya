@@ -13,7 +13,7 @@ defineProps({
 
 <template>
   <div class="card box-card">
-    <div class="flex justify-between w-full">
+    <div class="flex justify-between w-full p-5">
         <div class="flex flex-col gap-1.5">
             <div class="value-title">{{title}}</div>
             <div class="value-number">{{total}}</div>
@@ -22,7 +22,7 @@ defineProps({
             <IconInOut />
         </div>
     </div>
-    <div class="flex justify-between w-full">
+    <div class="flex justify-between w-full p-5 bg-bottom">
         <div class="flex gap-1.5 items-center">
             <div class="text-percentage box-percentage" :class="{up: revenue == 'up', down: revenue == 'down'}">
                 <IconArrowUp />
@@ -43,14 +43,18 @@ defineProps({
 .box-card{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content: space-between;    
     max-width: 347px;
+    padding: 0;
     width: 100%;
     min-height: 143px;
     border-radius: 10px;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px 0px #00000033;
+}
+.bg-bottom{
+    background:#F9FAFC;
+    border-radius: 0 0 10px 10px;
 }
 .value-title{    
     font-size: 12px;

@@ -35,7 +35,7 @@ import IconOverview from '../assets/icon/Overview.vue'
     overflow-x: hidden;
     min-height: 100vh;
     display: flex;
-    background: #F2F2F2;
+    background: #F7F8FA;
 }
 .side-menu{
     min-height: 100vh;

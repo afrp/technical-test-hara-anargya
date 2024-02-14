@@ -1,11 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-
-defineProps({
-  msg: String,
-})
-
-const count = ref(0)
+import IconHome from '../assets/icon/Home.vue'
+import IconOverview from '../assets/icon/Overview.vue'
 </script>
 
 <template>
@@ -13,8 +8,14 @@ const count = ref(0)
         <div class="side-menu">
             <div class="side-menu-title">heylink.</div>
             <div class="box-menu">
-                <router-link to="/" exact>Dashboard</router-link>
-                <router-link to="/overview" exact>Overview</router-link>
+                <router-link to="/" exact>
+                    <IconHome/>
+                    <span>Dashboard</span>
+                </router-link>
+                <router-link to="/overview" exact>
+                    <IconOverview/>
+                    <span>Overview</span>
+                </router-link>
             </div>
         </div>
         <div class="container-content">
@@ -55,7 +56,7 @@ const count = ref(0)
     width: calc(100% - 281px);
 }
 .header{    
-    padding: 16px 24px;
+    padding: 16px 30px;
     min-height: 65px;
     display: flex;
     justify-content: space-between;        
@@ -66,7 +67,7 @@ const count = ref(0)
 
 .box-content-wrap{
     display: flex;
-    padding: 24px;
+    padding: 30px;
     width: auto;
 }
 
@@ -95,6 +96,7 @@ const count = ref(0)
 .box-menu a{
     width: 100%;
     display: flex;
+    gap: 10px;
     align-items: center;
     font-family: Inter;
     font-size: 16px;
